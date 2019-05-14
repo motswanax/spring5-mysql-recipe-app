@@ -13,3 +13,11 @@ workflows:
     # Run the welcome/run job in its own container
     jobs:
       - welcome/run
+      - run: mvn integration-test cobertura:cobertura
+
+      - store_test_results:
+          path: target/surefire-reports
+
+      - run:
+          name: Send to CodeCov
+          command: bash <{curl -s https://codecov.io/bash}
