@@ -16,7 +16,7 @@ workflows:
       - welcome/run
   Codecov:
     steps:
-      -checkout
+      - checkout
 
     # Download and cache dependencies
       - restore_cache:
@@ -32,7 +32,7 @@ workflows:
             - ~/.m2
           key: v1-dependencies-({ checksum "pom.xml"})
 
-      # run tests and generate coverage
+      # run tests and generate coverage back
       - run: mvn integration-test cobertura:cobertura
 
       - store_test_results:
